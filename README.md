@@ -2,6 +2,7 @@
 This is an educational project on data cleaning and preparation using SQL. The original database in CSV format is located in the file club_member_info.csv. Here, we will explore the steps that need to be applied to obtain a cleansed version of the dataset.
 Create new clean table
 SQL code:
+
         -- club_member_info definition
         CREATE TABLE club_member_info_cleaned (
         full_name VARCHAR(50),
@@ -13,6 +14,8 @@ SQL code:
         job_title VARCHAR(50),
         membership_date VARCHAR(50)
         );
+Select 10 lines from club_member_info:
+
         select * from club_member_info limit 10;
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
 |---------|---|--------------|-----|-----|------------|---------|---------------|
