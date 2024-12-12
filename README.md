@@ -1,20 +1,6 @@
 # SQL-data-cleaning
 This is an educational project on data cleaning and preparation using SQL. The original database in CSV format is located in the file club_member_info.csv. Here, we will explore the steps that need to be applied to obtain a cleansed version of the dataset.
 
-Create new clean table
-SQL code:
-
-        -- club_member_info definition
-        CREATE TABLE club_member_info_cleaned (
-        full_name VARCHAR(50),
-        age INTEGER,
-        martial_status VARCHAR(50),
-        email VARCHAR(50),
-        phone VARCHAR(50),
-        full_address VARCHAR(50),
-        job_title VARCHAR(50),
-        membership_date VARCHAR(50)
-        );
 Select 10 lines from club_member_info:
 
         select * from club_member_info limit 10;
@@ -30,3 +16,39 @@ Select 10 lines from club_member_info:
 |   Joete Cudiff|51|divorced|jcudiff7@ycombinator.com|616-617-0965|975 Dwight Plaza,Grand Rapids,Michigan|Research Nurse|11/16/2014|
 |mendie alexandrescu|46|single|malexandrescu8@state.gov|504-918-4753|34 Delladonna Terrace,New Orleans,Louisiana|Systems Administrator III|3/12/1921|
 | fey kloss|52|married|fkloss9@godaddy.com|808-177-0318|8976 Jackson Park,Honolulu,Hawaii|Chemical Engineer|11/5/2014|
+
+Create new clean table
+SQL code:
+
+        -- club_member_info definition
+        CREATE TABLE club_member_info_cleaned (
+        full_name VARCHAR(50),
+        age INTEGER,
+        martial_status VARCHAR(50),
+        email VARCHAR(50),
+        phone VARCHAR(50),
+        full_address VARCHAR(50),
+        job_title VARCHAR(50),
+        membership_date VARCHAR(50)
+        );
+
+Copy all values from original table to cleaned table:
+
+        insert into club_member_info_cleaned
+        select * from club_member_info;
+
+Remove leading and trailing whitespaces:
+
+        update club_member_info_cleaned 
+        set full_name = trim(full_name);
+
+Consistenly upper full name:
+        
+        update club_member_info_cleaned 
+        set full_name = upper(full_name);
+        
+Consistently update unrealistic age (>100) to 44 - which is age average of the dataset
+
+        update club_member_info_cleaned 
+        set age = 44
+        where age > 100;
